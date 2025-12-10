@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a1d29" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Neon Plinko</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #0f172a;
+        color: white;
+        overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile */
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Safe Area Utilities */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+      
+      /* 3D Button Base Styles */
+      .btn-3d {
+        transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        touch-action: manipulation;
+        user-select: none;
+      }
+      
+      .btn-3d:active:not(:disabled) {
+        transform: translateY(2px);
+      }
+      
+      /* Specific Colors */
+      .btn-3d-green {
+        background: linear-gradient(to bottom, #84cc16, #65a30d);
+        box-shadow: 0 4px 0 #365314;
+      }
+      .btn-3d-green:active:not(:disabled) {
+        box-shadow: 0 0 0 #365314;
+      }
+      
+      .btn-3d-slate {
+        background: #334155;
+        box-shadow: 0 4px 0 #0f172a;
+      }
+      .btn-3d-slate:active:not(:disabled) {
+        box-shadow: 0 0 0 #0f172a;
+      }
+      
+      .btn-3d-blue {
+        background: #3b82f6;
+        box-shadow: 0 4px 0 #1e3a8a;
+      }
+      .btn-3d-blue:active:not(:disabled) {
+        box-shadow: 0 0 0 #1e3a8a;
+      }
+
+      .btn-3d-yellow {
+        background: #eab308;
+        box-shadow: 0 4px 0 #a16207;
+        color: #422006;
+      }
+      .btn-3d-yellow:active:not(:disabled) {
+        box-shadow: 0 0 0 #a16207;
+      }
+
+      /* Multiplier Neon Flash Animation */
+      @keyframes neon-flash {
+        0% { 
+            box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+            transform: translateY(4px) scale(1.05);
+            filter: brightness(1.2);
+        }
+        15% {
+            box-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color);
+            transform: translateY(4px) scale(1.2);
+            filter: brightness(1.8);
+        }
+        100% {
+            box-shadow: 0 0 0 transparent; /* Fallback to inline style after animation */
+            transform: translateY(0) scale(1);
+            filter: brightness(1);
+        }
+      }
+      .animate-neon-flash {
+        animation: neon-flash 2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Custom scrollbar for history panel */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 3px;
+      }
+
+      /* Hide number input arrows */
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "matter-js": "https://aistudiocdn.com/matter-js@^0.20.0",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+    "firebase/analytics": "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "path": "https://aistudiocdn.com/path@^0.12.7",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.2",
+    "vite": "https://aistudiocdn.com/vite@^7.2.7"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
