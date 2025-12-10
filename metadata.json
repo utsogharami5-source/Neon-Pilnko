@@ -1,5 +1,0 @@
-{
-  "name": "Neon Plinko",
-  "description": "A high-fidelity Plinko gambling game simulator with real-time physics, adjustable risk levels, and row configurations.",
-  "requestFramePermissions": []
-}
